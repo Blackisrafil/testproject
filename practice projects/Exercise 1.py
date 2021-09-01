@@ -39,7 +39,8 @@ while imp_hp >= 1:
     input("Enter a key to roll an attack: ")
     battle = imp_hp - Adventurer.strength
     print(battle)
-    
+
+# Here are the changes.
 
 
 
