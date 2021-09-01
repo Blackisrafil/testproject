@@ -1,5 +1,7 @@
 from random import randrange
 
+# Here it starts
+
 class Player:
     def __init__(self, level, current_xp, hp, strength):
         self.level = level
