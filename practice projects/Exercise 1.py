@@ -19,9 +19,7 @@ current_xp = 0
 
 character_stats = False
 
-
 imp_hp = 20
-imp_strength = randrange(3, 5)
 
 print("You enter a cave to eliminate the demons. You have been ordered by a nearby towns Mayor to complete this task.")
 print("As you enter a cave, the first room contains a small, flying creature. You ready your iron blade.")
@@ -29,6 +27,7 @@ input("\nEnter any key to commence battle: ")
 print("\nThe small creature see you and rushes to attack!")
 
 while imp_hp >= 1:
+    imp_strength = randrange(3, 5)
     if current_xp == 0:
         Adventurer = Player(1, 0, 20, randrange(3, 9))
     if current_xp >= 10:
@@ -38,6 +37,7 @@ while imp_hp >= 1:
     input("Enter a key to roll an attack: ")
     battle = imp_hp - Adventurer.strength
     print(battle)
+    
 
 
 
