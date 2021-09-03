@@ -23,15 +23,23 @@ class Player:
         self.current_xp += exp
         # Check if level up is needed
         leveled_up = False
-        if self.current_xp >= 10 & self.current_xp < 20:
+        if self.current_xp >= 10 and self.current_xp < 20:
             self.level = 2
+            self.hp = 31
+            self.min_range = 4
+            self.max_range = 10
+            self.strength = randrange(self.min_range, self.max_range)
             leveled_up = True
-        elif self.current_xp >= 20 & self.current_xp < 30:
+        elif self.current_xp >= 20 and self.current_xp < 30:
             self.level = 3
+            self.hp = 39
+            self.min_range = 5
+            self.max_range = 11
+            self.strength = randrange(self.min_range, self.max_range)
             leveled_up = True
 
         if leveled_up:
-            print(f"\nYou have leveled up to {self.level}!")
+            print(f"\nYou have leveled up to level {self.level}!")
 
 
 # New player
@@ -53,11 +61,11 @@ while Imp.hp >= 1 or Adventurer.hp >= 1:
     Imp.hp -= Adventurer.roll_attack()
     print("You inflict:", Adventurer.strength, "damage. The Imp has", Imp.hp, "health remaining.")
     # Check if Imp is still alive
-    if Imp.hp <= 1:
+    if Imp.hp <= 0:
         break
     Adventurer.hp -= Imp.roll_attack()
     print("You take:", Imp.strength, "damage. You have", Adventurer.hp, "health remaining.")
-    if Adventurer.hp <= 1:
+    if Adventurer.hp <= 0:
         print("\nYou have fallen...")
         exit()
 
