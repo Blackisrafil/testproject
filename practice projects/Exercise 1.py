@@ -57,6 +57,6 @@ while Imp.hp >= 1 or Adventurer.hp >= 1:
         print("\nYou have fallen...")
         exit()
 
-Adventurer.add_exp(25)
+Adventurer.add_exp(5)
 print("\nYou have won the battle and gained 5 XP!")
 print(f"Current XP: {Adventurer.current_xp}")
