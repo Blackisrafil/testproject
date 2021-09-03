@@ -7,7 +7,7 @@ class Player:
         self.level = 1
         self.current_xp = 0
         self.hp = 20
-        self.strength = randrange(3, 9
+        self.strength = randrange(3, 9)
 
     # Function to calculate attack based on level
     def roll_attack(self):
