@@ -7,11 +7,13 @@ class Player:
         self.level = 1
         self.current_xp = 0
         self.hp = 20
-        self.strength = randrange(3, 9)
+        self.min_range = 3
+        self.max_range = 9
+        self.strength = randrange(self.min_range, self.max_range)
 
     # Function to calculate attack based on level
     def roll_attack(self):
-        self.strength = randrange(2 + self.level, 8 + self.level)
+        self.strength = randrange(self.min_range + self.level, self.max_range + self.level)
         return self.strength
 
     def get_stats(self):
@@ -36,6 +38,8 @@ class Player:
 Adventurer = Player()
 # New enemy
 Imp = Player()
+# Set imp max range
+Imp.max_range = 5
 
 
 print("You enter a cave to eliminate the demons. You have been ordered by a nearby towns Mayor to complete this task.")
