@@ -50,6 +50,8 @@ Hellhound.max_range = 6
 Hellhound.strength = randrange(Hellhound.min_range, Hellhound.max_range)
 Hellhound.hp = 22
 
+ladder = False
+
 print("You enter a cave to eliminate the demons. You have been ordered by a nearby towns Mayor to complete this task.")
 print("As you enter a cave, the first room contains a small, flying creature. You ready your iron blade.")
 input("\nEnter any key to commence battle: ")
@@ -87,9 +89,9 @@ print("\nWhich path will you take?")
 first_crossroad = input("Right or Left?").lower()
 
 if first_crossroad == "right":
-    print("You take the much welcoming route and walk down the wet path. It isn't long until you find another demon")
-    print("A demon with two tails turns to look at you. It seems to be a Hell-Hound. It attacks! You ready yourself!")
-    while Hellhound.hp >= 1 or Adventurer.hp >=1:
+    print("You take the much welcoming route and walk down the wet path. It isn't long until you find another demon.")
+    print("The demon with two tails turns to look at you. It seems to be a Hell-Hound. It attacks! You ready yourself!")
+    while Hellhound.hp >= 1 or Adventurer.hp >= 1:
         input("\nEnter a key to roll an attack: ")
         Hellhound.hp -= Adventurer.roll_attack()
         print("You inflict:", Adventurer.strength, "damage. The Hell-Hound has", Hellhound.hp, "health remaining.")
@@ -110,4 +112,29 @@ if first_crossroad == "right":
             exit()
 
 if first_crossroad == "left":
-    
+    ladder = True
+    print("You take the less welcoming path and find a room. As you enter it, the doors close shut and the air turns")
+    print("hot! You see a half broken ladder leading up into another part of the cave. You'll need to jump high")
+    print("to catch it before you burn to death!")
+    while ladder == True or Adventurer.hp >= 1:
+        print("Roll at least 9 or more to survive!")
+        input("Enter any button to roll: ")
+        ladder_event = randrange(0, 10)
+        print(ladder_event)
+        if ladder_event <= 8:
+            print("You did not jump high enough.")
+            print("You have taken 3 damage...")
+            Adventurer.hp -= 3
+            print("Remaining HP:", Adventurer.hp)
+            if Adventurer.hp <= 1:
+                print("You have burnt to death...")
+                exit()
+        else:
+            print("You managed to survive the deathtrap!")
+            print("You obtain 20 xp!")
+            Adventurer.add_exp(20)
+            print(f"Current xp: {Adventurer.current_xp}")
+            break
+
+print("You manage to keep dragging your feet through the narrow crevices of the cave being careful of any dangers that")
+print("may lurk around you.")
