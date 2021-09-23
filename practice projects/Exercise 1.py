@@ -50,6 +50,17 @@ Hellhound.max_range = 6
 Hellhound.strength = randrange(Hellhound.min_range, Hellhound.max_range)
 Hellhound.hp = 22
 
+Oni = Player()
+
+Oni.min_range = 4
+Oni.max_range = 9
+Oni.strength = randrange(Oni.min_range, Oni.max_range)
+Oni_block = 2
+Oni_heal_min = 1
+Oni_heal_max = 3
+Oni_heal = randrange(Oni_heal_min, Oni_heal_max)
+Oni.hp = 30
+
 ladder = False
 
 print("You enter a cave to eliminate the demons. You have been ordered by a nearby towns Mayor to complete this task.")
@@ -86,22 +97,25 @@ print("\nYou press on into the dark caves. As you go deeper, you feel the air ch
 print("You see two paths, one right and left. The right path seems to be narrow. The floor is slightly wet.")
 print("The left path seems much less welcoming, with a blue hue of light that seems to be emitting down the pathway.")
 print("\nWhich path will you take?")
+
+
 first_crossroad = input("Right or Left?").lower()
 
 if first_crossroad == "right":
-    print("You take the much welcoming route and walk down the wet path. It isn't long until you find another demon.")
+    print("You take the much welcoming route down the wet path. It isn't long until you find another demon.")
     print("The demon with two tails turns to look at you. It seems to be a Hell-Hound. It attacks! You ready yourself!")
     while Hellhound.hp >= 1 or Adventurer.hp >= 1:
         input("\nEnter a key to roll an attack: ")
         Hellhound.hp -= Adventurer.roll_attack()
         print("You inflict:", Adventurer.strength, "damage. The Hell-Hound has", Hellhound.hp, "health remaining.")
         if Hellhound.hp <= 0:
-            print("\nYou are victorious! Obtained 10 XP!")
-            Adventurer.add_exp(10)
-            print(f"Current XP: {Adventurer.current_xp}")
+             print("\nYou are victorious! Obtained 10 XP!")
+             Adventurer.add_exp(10)
+             print(f"Current XP: {Adventurer.current_xp}")
 
-            print("Your current Health is: ", Adventurer.hp)
-            break
+             print("Your current Health is: ", Adventurer.hp)
+             break
+
         Adventurer.hp -= Hellhound.roll_attack()
         print("You take:", Hellhound.strength, "damage. You have", Adventurer.hp, "health remaining.")
         Adventurer.hp-= 2
@@ -117,7 +131,7 @@ if first_crossroad == "left":
     print("hot! You see a half broken ladder leading up into another part of the cave. You'll need to jump high")
     print("to catch it before you burn to death!")
     while ladder == True or Adventurer.hp >= 1:
-        print("Roll at least 9 or more to survive!")
+        print("\nRoll at least 9 or more to survive!")
         input("Enter any button to roll: ")
         ladder_event = randrange(0, 10)
         print(ladder_event)
@@ -136,5 +150,39 @@ if first_crossroad == "left":
             print(f"Current xp: {Adventurer.current_xp}")
             break
 
+
+
 print("You manage to keep dragging your feet through the narrow crevices of the cave being careful of any dangers that")
 print("may lurk around you.")
+input("Enter any key to continue: ")
+print("You feel your quest almost coming to an end. As you talk down the dark path, you see a large opening.")
+print("A giant demon sees you. It looks to be an Oni-class demon. This one will be a tough fight!")
+
+input("Your stats so far:")
+print("Level:", Adventurer.level)
+print("Strength:", Adventurer.min_range,",",Adventurer.max_range)
+print("Health:", Adventurer.hp)
+print("XP:", Adventurer.current_xp)
+
+input("Get ready for the final battle. Enter any key to step forward and fight!")
+
+while Oni.hp >= 1 or Adventurer.hp >= 1:
+    input("\nEnter a key to roll an attack: ")
+    Oni.hp -= Adventurer.roll_attack() - Oni_block
+    print("You inflict:", Adventurer.strength, "damage. Oni blocks for:", Oni_block,"Health!")
+    print("Oni has", Oni.hp, " remaining.")
+    if Oni.hp <= 0:
+        print("You manage to land the final blow...")
+        break
+    Adventurer.hp -= Oni.roll_attack()
+    print("You take:", Oni.strength, "Damage. You have:", Adventurer.hp, "remaining.")
+    if Adventurer.hp <= 0:
+        print("You take a fatal blow from the mighty demon. You fall to the ground...")
+        exit()
+    print("\nThe Onis body emits a green aura, it has healed itself!")
+    Oni.hp += Oni_heal
+    print("The Onis remaining health:",Oni.hp)
+
+input("The Oni falls as you land your finishing strike.")
+print("\nYou stand victorious, and your quest has come to an end. You proudly return to the town.")
+print("~Fin~")
